@@ -919,7 +919,7 @@ async function solveAltchaIfPresent(page, stageName = "Renew阶段", maxAttempts
                             const successShotPath = path.join(photoDir, `${safeUser}_success.png`);
                             try { await page.screenshot({ path: successShotPath, fullPage: true }); } catch (e) { }
 
-                            await sendTelegramMessage(`✅ *续期成功*\n用户: ${user.username}\n状态: 服务器已成功续期！`, successShotPath);
+                            await sendTelegramMessage(`🇫🇷 Katabump 续期通知\n✅ *续期成功*\n用户: ${user.username}\n状态: 服务器已成功续期！`);
                             renewSuccess = true;
                             break;
                         } else {
