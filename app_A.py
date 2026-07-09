@@ -8,8 +8,8 @@ import requests
 from seleniumbase import SB
 
 # 从环境变量获取账号密码和 TG 配置
-EMAIL        = os.environ.get("KATABUMP_EMAIL") or ""    # 登录邮箱
-PASSWORD     = os.environ.get("KATABUMP_PASSWORD") or "" # 账号密码
+EMAIL_A        = os.environ.get("KATABUMP_EMAIL_A") or ""    # 登录邮箱
+PASSWORD_A     = os.environ.get("KATABUMP_PASSWORD_A") or "" # 账号密码
 TG_CHAT_ID   = os.environ.get("TG_CHAT_ID") or ""        # tg通知 chat id(可选)
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN") or ""       # tg通知bot token(可选)
 
@@ -27,14 +27,14 @@ def send_tg_message(status_icon, status_text, time_left=""):
 
     # 按照要求的格式拼接消息
     # 邮箱脱敏：保留用户名前2位和后2位，中间用****代替
-    if '@' in EMAIL:
-        name, domain = EMAIL.split('@', 1)
+    if '@' in EMAIL_A:
+        name, domain = EMAIL_A.split('@', 1)
         if len(name) > 4:
             masked_email = f"{name[:2]}****{name[-2:]}@{domain}"
         else:
             masked_email = f"{name}@{domain}"
     else:
-        masked_email = EMAIL[:2] + '****'
+        masked_email = EMAIL_A[:2] + '****'
 
     text = (
         f"🇫🇷 katabump 续期通知\n\n"
@@ -328,11 +328,11 @@ def login(sb) -> bool:
         pass
 
     print(f"📧 填写邮箱...")
-    js_fill_input(sb, 'input[name="email"]', EMAIL)
+    js_fill_input(sb, 'input[name="email"]', EMAIL_A)
     time.sleep(0.3)
     
     print("🔑 填写密码...")
-    js_fill_input(sb, 'input[name="password"]', PASSWORD)
+    js_fill_input(sb, 'input[name="password"]', PASSWORD_A)
     time.sleep(1)
 
     if sb.execute_script(_EXISTS_JS):
