@@ -1,8 +1,8 @@
-name: Katabump Auto Renew
+name: Katabump Auto Renew_A
 
 on:
   schedule:
-  - cron: '0 2 */3 * *'  # 每天 UTC 0点 (北京时间 8点) 运行,根据服务到期时间自行修改
+   - cron: '0 0 3-31/4 * *' # 每月3-31号，每4天8点(UTC 0:00)运行
   workflow_dispatch: # 允许手动触发
 
 jobs:
@@ -35,13 +35,13 @@ jobs:
 
     - name: 🚀 运行续期脚本
       env:
-        KATABUMP_EMAIL: ${{ secrets.KATABUMP_EMAIL }}
-        KATABUMP_PASSWORD: ${{ secrets.KATABUMP_PASSWORD }}
+        KATABUMP_EMAIL_A: ${{ secrets.KATABUMP_EMAIL_A }}
+        KATABUMP_PASSWORD_A: ${{ secrets.KATABUMP_PASSWORD_A }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
       run: |
         xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
-          python3 app.py
+          python3 app_A.py
         
     - name: 🧹 清理旧的工作流运行记录
       if: always()
