@@ -68,7 +68,7 @@ jobs:
         env:
           KATABUMP_EMAIL_A: ${{ secrets.KATABUMP_EMAIL_A }}
           KATABUMP_PASSWORD_A: ${{ secrets.KATABUMP_PASSWORD_A }}
-          TG_AOT_TOKEN: ${{ secrets.TG_AOT_TOKEN }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
